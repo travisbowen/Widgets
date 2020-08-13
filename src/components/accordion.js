@@ -8,24 +8,22 @@ const Accordion = (props) => {
 	};
 
 	const list = props.items.map((item, index) => {
+		const active = index === activeIndex ? "active" : "";
 		return (
 			<React.Fragment key={item.title}>
-				<div className='title active' onClick={() => onTitleClicked(index)}>
+				<div
+					className={`title ${active}`}
+					onClick={() => onTitleClicked(index)}>
 					<i className='dropdown icon'></i>
 					{item.title}
 				</div>
-				<div className='content active'>
+				<div className={`content ${active}`}>
 					<p>{item.content}</p>
 				</div>
 			</React.Fragment>
 		);
 	});
-	return (
-		<div className='ui styled accordion'>
-			{list}
-			<h1>{activeIndex}</h1>
-		</div>
-	);
+	return <div className='ui styled accordion'>{list}</div>;
 };
 
 export default Accordion;
