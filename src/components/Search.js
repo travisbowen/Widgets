@@ -23,9 +23,17 @@ const Search = () => {
 			setResults(data.query.search);
 		};
 
-		if (term) {
-			search();
-		}
+		//Sets timer upon each key stroke and searches after 5 seconds
+		const timeoutId = setTimeout(() => {
+			if (term) {
+				search();
+			}
+		}, 500);
+
+		//Gets called when data changes and cancels timer if search term changes
+		return () => {
+			clearTimeout(timeoutId);
+		};
 
 		// Passed in term in array gets called each time the term changes
 	}, [term]);
